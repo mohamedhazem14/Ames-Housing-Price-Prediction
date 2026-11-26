@@ -1,155 +1,153 @@
-# 🏠 Ames Housing Price Prediction
+# Ames Housing Price Prediction 🏠
 
-## 📌 Project Overview
+## Project Overview
 
-This project aims to predict house sale prices using the Ames Housing dataset and advanced machine learning techniques.
+This project focuses on predicting residential house prices using Machine Learning regression techniques.
 
-The workflow includes data preprocessing, feature engineering, model comparison, ensemble learning, and model persistence for deployment.
+The project uses the Ames Housing Dataset, which contains information about residential properties, including their size, quality, location, condition, and other characteristics.
 
-The objective is to build a robust regression model capable of accurately estimating housing prices based on property characteristics and neighborhood-related features.
+The main objective is to explore the dataset, identify important factors affecting house prices, perform data preprocessing and feature engineering, and build regression models to predict house sale prices.
 
----
+## Dataset
 
-## 📊 Dataset Description
+The dataset contains information about residential properties in Ames, Iowa.
 
-The Ames Housing dataset contains detailed information about residential properties, including:
+- Training data: `train.csv`
+- Testing data: `test.csv`
+- Target variable: `SalePrice`
 
-- Property size and living area
-- Basement features
-- Garage information
-- Construction and remodeling years
-- Number of rooms and bathrooms
-- Porch and outdoor space features
-- Neighborhood characteristics
+## Technologies & Libraries
 
-### Target Variable
+- Python
+- Pandas & NumPy
+- Matplotlib & Seaborn
+- Scikit-learn
+- Jupyter Notebook
 
-- **SalePrice** (log-transformed for improved model performance)
+## Project Workflow
 
----
+### 1. Exploratory Data Analysis (EDA)
 
-## ⚙️ Workflow
+- Understanding numerical and categorical features.
+- Analyzing feature distributions.
+- Identifying missing values and outliers.
+- Studying correlations between independent variables.
+- Exploring relationships between features and SalePrice.
 
-### 1. Data Cleaning
+### 2. Data Preprocessing
 
-- Removed unnecessary columns (e.g., ID)
-- Handled missing values using median and most frequent imputation
-
-### 2. Exploratory Data Analysis (EDA)
-
-- Sale price distribution analysis
-- Correlation analysis
-- Feature relationship visualization
-- Heatmap of top correlated features
+- Handling missing values using appropriate imputation techniques.
+- Removing redundant and highly correlated features.
+- Identifying and handling outliers.
+- Removing low-information features.
+- Encoding categorical and ordinal variables.
+- Applying numerical scaling using RobustScaler.
 
 ### 3. Feature Engineering
 
-Created several domain-driven features:
+Created additional features to improve predictive performance:
 
+- TotalLot
+- TotalBsmtFin
 - TotalSF
 - TotalBath
-- HouseAge
-- RemodAge
-- HasGarage
-- HasFireplace
-- TotalPorchSF
-- LivAreaPerRoom
+- TotalPorch
 
-### 4. Data Preprocessing
+Also created binary features to represent the presence or absence of specific house characteristics.
 
-- Missing value treatment
-- One-Hot Encoding using Pandas
-- Feature alignment between train and test sets
-- Feature scaling using RobustScaler
+### 4. Target Transformation
 
-### 5. Model Training
+Applied logarithmic transformation to SalePrice to reduce positive skewness and improve the target distribution.
 
-Data was split into:
+### 5. Model Building
 
-- 80% Training Data
-- 20% Testing Data
+Implemented and evaluated the following regression algorithms:
 
----
-
-## 🤖 Models Used
-
-- Ridge Regression
-- Lasso Regression
-- Elastic Net Regression
-- Random Forest Regressor
 - Gradient Boosting Regressor
-
-### Ensemble Learning
-
-A Stacking Regressor was implemented using:
-
 - Random Forest Regressor
-- Gradient Boosting Regressor
 
-with:
+Used cross-validation and hyperparameter search techniques during model development.
 
-- Ridge Regression as the final estimator
+## Model Evaluation
 
----
+The Gradient Boosting model achieved the following validation results:
 
-## 📈 Evaluation Metrics
+| Metric | Score |
+|---|---:|
+| R² Score | 0.917 |
+| 5-Fold Cross-Validation R² | 0.904 |
+| MAE (Log Scale) | 0.079 |
+| RMSE (Log Scale) | 0.110 |
 
-Models were evaluated using:
+Gradient Boosting performed better than Random Forest on the reported validation results.
 
-- R² Score
-- RMSE (Root Mean Squared Error)
-- MAE (Mean Absolute Error)
+## Key Learnings
 
----
+- Performing effective Exploratory Data Analysis.
+- Understanding the impact of missing values and outliers.
+- Feature selection and feature engineering.
+- Handling categorical and numerical data.
+- Understanding data leakage and proper preprocessing practices.
+- Training and evaluating regression models.
+- Comparing Machine Learning model performance.
 
-## 🏆 Results
+## Project Structure
 
-### Best Model
-
-**Stacking Regressor**
-
-The ensemble stacking approach achieved the strongest predictive performance by combining multiple machine learning models and leveraging Ridge Regression as the meta-learner.
-
----
-
-## 📊 Visualizations
-
-The project includes:
-
-- Sale Price Distribution
-- Correlation Heatmap
-- Model Performance Comparison
-- Actual vs Predicted Prices
-- Error Distribution Analysis
-
----
-
-## 💾 Model Saving
-
-The final trained model was saved using Joblib:
-
-```python
-joblib.dump(stack, "ames_model.pkl")
+```text
+ames-housing-price-prediction/
+│
+├── data/
+│   └── README.md
+│
+├── notebooks/
+│   └── ames_housing_price_prediction.ipynb
+│
+├── requirements.txt
+└── README.md
 ```
 
-This allows the model to be reused for future predictions and deployment.
+## How to Run
+
+1. Clone this repository:
+
+```bash
+git clone https://github.com/YOUR_USERNAME/ames-housing-price-prediction.git
+```
+
+2. Navigate to the project directory:
+
+```bash
+cd ames-housing-price-prediction
+```
+
+3. Install the required libraries:
+
+```bash
+pip install -r requirements.txt
+```
+
+4. Download the dataset and place `train.csv` and `test.csv` in the appropriate data directory.
+
+5. Open the Jupyter Notebook:
+
+```bash
+jupyter notebook
+```
+
+6. Run the notebook cells.
+
+## Future Improvements
+
+- Build a more robust preprocessing pipeline using Scikit-learn Pipelines.
+- Perform more systematic hyperparameter optimization.
+- Experiment with additional regression algorithms.
+- Improve model evaluation and generalization.
+- Develop a simple web application for house price prediction.
 
 ---
 
-## 🛠 Technologies Used
+**Author:** Mohamed Hazem
 
-- Python
-- Pandas
-- NumPy
-- Matplotlib
-- Seaborn
-- Scikit-learn
-- Joblib
+**GitHub:** https://github.com/mohamedhazem14
 
----
-
-## 👤 Author
-
-**Mohamed Hazem**
-
-AI Engineer | Machine Learning Enthusiast
+**LinkedIn:** https://www.linkedin.com/in/mohamed-hazem-74001a2b6/
