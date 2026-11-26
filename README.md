@@ -1,4 +1,4 @@
-# Ames Housing Price Prediction 🏠
+# Housing Price Prediction 🏠
 
 ## Project Overview
 
